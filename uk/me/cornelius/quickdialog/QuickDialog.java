@@ -19,32 +19,55 @@ public class QuickDialog {
         String titleAsString = mContext.getResources().getString(title);
         String messageAsString = mContext.getResources().getString(message);
 
-        show(titleAsString, messageAsString);
+        show(titleAsString, messageAsString, null);
     }
 
     public void show(int title, String message) {
         String titleAsString = mContext.getResources().getString(title);
 
-        show(titleAsString, message);
+        show(titleAsString, message, null);
     }
 
     public void show(String title, int message) {
         String messageAsString = mContext.getResources().getString(message);
 
-        show(title, messageAsString);
+        show(title, messageAsString, null);
     }
 
     public void show(String title, String message) {
+        show(title, message, null);
+    }
+
+    public void show(int title, int message, DialogInterface.OnClickListener listener) {
+        String titleAsString = mContext.getResources().getString(title);
+        String messageAsString = mContext.getResources().getString(message);
+
+        show(titleAsString, messageAsString, listener);
+    }
+
+    public void show(int title, String message, DialogInterface.OnClickListener listener) {
+        String titleAsString = mContext.getResources().getString(title);
+
+        show(titleAsString, message, listener);
+    }
+
+    public void show(String title, int message, DialogInterface.OnClickListener listener) {
+        String messageAsString = mContext.getResources().getString(message);
+
+        show(title, messageAsString, listener);
+    }
+
+    public void show(String title, String message, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setMessage(title)
-                .setTitle(message)
-                .setPositiveButton(android.R.string.ok, null);
+        builder.setMessage(message)
+                .setTitle(title)
+                .setPositiveButton(android.R.string.ok, listener);
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
     public void toast(String message, int length) {
-        Toast.makeText(mContext,message,length).show();
+        Toast.makeText(mContext, message, length).show();
     }
 
     public void toast(String message) {
